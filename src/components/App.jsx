@@ -13,8 +13,12 @@ export class App extends Component {
   render() {
     return (
       <Div>
-        <Searchbar /> <ImageGallery /> <ImageGalleryItem /> <Loader />
-        <Button /> <Modal />
+        <Searchbar />
+        <ImageGallery />
+        <ImageGalleryItem />
+        <Loader />
+        <Button />
+        <Modal />
       </Div>
     );
   }
