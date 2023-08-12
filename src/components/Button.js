@@ -1,3 +1,6 @@
-// import React from 'react';
+import React from 'react';
+import { ButtonStyled } from './Button.styled';
 
-export const Button = () => {};
+export const Button = () => {
+  return <ButtonStyled type="button">Load more</ButtonStyled>;
+};

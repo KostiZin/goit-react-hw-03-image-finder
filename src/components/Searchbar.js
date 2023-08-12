@@ -1,19 +1,23 @@
 import React from 'react';
-import { SearchbarStyled } from './Searchbar.styled';
+import {
+  SearchbarStyled,
+  SearchFormBtn,
+  SearchFormSpan,
+  SearchFormInput,
+} from './Searchbar.styled';
 
 export const Searchbar = () => {
   return (
-    <header class="searchbar">
-      <SearchbarStyled class="form">
-        <button type="submit" class="button">
-          <span class="button-label">Search</span>
-        </button>
-
-        <input
-          class="input"
+    <header className="searchbar">
+      <SearchbarStyled className="form">
+        <SearchFormBtn type="submit" className="button">
+          <SearchFormSpan className="button-label">Search</SearchFormSpan>
+        </SearchFormBtn>
+        <SearchFormInput
+          className="input"
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
       </SearchbarStyled>
