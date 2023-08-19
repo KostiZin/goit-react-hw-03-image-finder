@@ -38,7 +38,7 @@ export class App extends Component {
         const searchIndex = fullQuery.indexOf('/');
         const slicedQuery = fullQuery.slice(searchIndex + 1);
         console.log(`HTTP query ${slicedQuery}`);
-        const pictures = await fetchPictures(slicedQuery);
+        const pictures = await fetchPictures(slicedQuery, page);
         this.setState({ images: pictures.hits });
       } catch (error) {
         console.error('Error fetching pictures:', error);
