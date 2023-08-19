@@ -3,7 +3,7 @@ import { Div } from './App.styled';
 import { Searchbar } from './Searchbar';
 import { ImageGallery } from './ImageGallery';
 
-// import { Loader } from './Loader';
+import { Loader } from './Loader';
 import { Button } from './Button';
 import { fetchPictures } from './api';
 // import { Modal } from './Modal';
@@ -14,6 +14,8 @@ export class App extends Component {
     images: [],
     page: 1,
     // showModal: false,
+    showButton: false,
+    showLoader: false,
   };
 
   // toggleModal = () => {
@@ -27,6 +29,7 @@ export class App extends Component {
       query: `${Date.now()}/${newQuery}`,
       images: [],
       page: 1,
+      // isActive: true,
     });
   };
 
@@ -37,9 +40,9 @@ export class App extends Component {
         const fullQuery = query;
         const searchIndex = fullQuery.indexOf('/');
         const slicedQuery = fullQuery.slice(searchIndex + 1);
-        console.log(`HTTP query ${slicedQuery}`);
+
         const pictures = await fetchPictures(slicedQuery, page);
-        this.setState({ images: pictures.hits });
+        this.setState({ images: pictures.hits, showButton: true });
       } catch (error) {
         console.error('Error fetching pictures:', error);
       }
@@ -53,14 +56,15 @@ export class App extends Component {
   async componentDidMount() {}
 
   render() {
-    const { images } = this.state;
+    const { images, showButton, showLoader } = this.state;
 
     return (
       <Div>
         <Searchbar handleQuery={this.changeQuery} />
-        {/* {images.length === 0 ? <Loader /> : <ImageGallery prop={images} />} */}
+        {showLoader ? <Loader /> : showLoader}
         <ImageGallery prop={images} />
-        <Button handleClick={this.handleLoadMore} />
+        {showButton ? <Button handleClick={this.handleLoadMore} /> : showButton}
+
         {/* {showModal && <Modal />} */}
       </Div>
     );

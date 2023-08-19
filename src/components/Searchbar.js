@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiSearch } from 'react-icons/bi';
 import {
   SearchbarStyled,
   SearchFormBtn,
@@ -18,7 +19,9 @@ export const Searchbar = ({ handleQuery }) => {
         }}
       >
         <SearchFormBtn type="submit" className="button">
-          <SearchFormSpan className="button-label">Search</SearchFormSpan>
+          <SearchFormSpan className="button-label">
+            <BiSearch />
+          </SearchFormSpan>
         </SearchFormBtn>
         <SearchFormInput
           className="input"

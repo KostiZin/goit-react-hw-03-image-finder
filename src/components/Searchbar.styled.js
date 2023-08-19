@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BiSearch } from 'react-icons/bi';
 
 export const SearchbarStyled = styled.form`
   top: 0;
@@ -31,17 +32,19 @@ export const SearchbarStyled = styled.form`
 
 export const SearchFormBtn = styled.button`
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: 0;
-  background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
+  /* background-image: url(${(<BiSearch />)}); */
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
+  border-radius: 4px;
+  margin-right: 8px;
 
   :hover {
     opacity: 1;
@@ -49,7 +52,7 @@ export const SearchFormBtn = styled.button`
 `;
 
 export const SearchFormSpan = styled.span`
-  position: absolute;
+  /* position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
@@ -57,7 +60,7 @@ export const SearchFormSpan = styled.span`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   clip-path: inset(50%);
-  border: 0;
+  border: 0; */
 `;
 
 export const SearchFormInput = styled.input`
