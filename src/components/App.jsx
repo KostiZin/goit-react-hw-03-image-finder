@@ -29,6 +29,7 @@ export class App extends Component {
       query: `${Date.now()}/${newQuery}`,
       images: [],
       page: 1,
+      // loading: true,
       // isActive: true,
     });
   };
@@ -41,8 +42,20 @@ export class App extends Component {
         const searchIndex = fullQuery.indexOf('/');
         const slicedQuery = fullQuery.slice(searchIndex + 1);
 
+        this.setState({
+          showLoader: true,
+          showButton: false,
+        });
+
         const pictures = await fetchPictures(slicedQuery, page);
-        this.setState({ images: pictures.hits, showButton: true });
+
+        this.setState({
+          images: pictures.hits,
+          // showButton: true,
+          showLoader: false,
+          showButton: true,
+        });
+        // if (this.state.images.length)
       } catch (error) {
         console.error('Error fetching pictures:', error);
       }
@@ -50,20 +63,28 @@ export class App extends Component {
   }
 
   handleLoadMore = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
   };
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    // this.setState({ loading: false });
+  }
 
   render() {
-    const { images, showButton, showLoader } = this.state;
-
+    const { images, showLoader, showButton } = this.state;
+    console.log(images);
     return (
       <Div>
         <Searchbar handleQuery={this.changeQuery} />
-        {showLoader ? <Loader /> : showLoader}
-        <ImageGallery prop={images} />
-        {showButton ? <Button handleClick={this.handleLoadMore} /> : showButton}
+        {showLoader ? <Loader /> : <ImageGallery prop={images} />}
+        {showButton && images.length === 12 ? (
+          <Button handleClick={this.handleLoadMore} />
+        ) : (
+          !showButton
+        )}
+        {images.length === 0 && <p>Error</p>}
 
         {/* {showModal && <Modal />} */}
       </Div>

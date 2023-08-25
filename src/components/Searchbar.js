@@ -8,16 +8,15 @@ import {
 } from './Searchbar.styled';
 
 export const Searchbar = ({ handleQuery }) => {
+  const searchPic = evt => {
+    evt.preventDefault();
+    handleQuery(evt.target.elements.query.value);
+    evt.target.reset();
+  };
+
   return (
     <header className="searchbar">
-      <SearchbarStyled
-        className="form"
-        onSubmit={evt => {
-          evt.preventDefault();
-          handleQuery(evt.target.elements.query.value);
-          evt.target.reset();
-        }}
-      >
+      <SearchbarStyled className="form" onSubmit={searchPic}>
         <SearchFormBtn type="submit" className="button">
           <SearchFormSpan className="button-label">
             <BiSearch />
